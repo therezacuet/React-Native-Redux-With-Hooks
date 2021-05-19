@@ -18,6 +18,10 @@ const styles = StyleSheet.create({
     },
     overview:{
         marginTop:30,
+    },
+
+    backButton:{
+        marginTop:20
     }
 });
 

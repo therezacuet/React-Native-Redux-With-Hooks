@@ -4,13 +4,28 @@ import {useSelector, useDispatch} from 'react-redux';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import {removeFavorite} from '../redux/actions';
+import Movie from './Movie';
+import { RouteProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../navigations/data';
 
-const Favorites = () => {
+interface FavoriteScreenProps {
+  navigation: StackNavigationProp<RootStackParamList>;
+  route: RouteProp<RootStackParamList, 'HOME'>;
+}
+
+const Favorites :  React.FC<FavoriteScreenProps> = (props) => {
   const {favorites} = useSelector(state => state.moviesReducer);
   const dispatch = useDispatch();
   const removeFromFavorites = (movie: any) => dispatch(removeFavorite(movie));
   const handleRemoveFavorite = (movie: any) => {
     removeFromFavorites(movie);
+  };
+
+  const goToDetails = (movie: any) => {
+    console.log(JSON.stringify(props));
+    const id = movie.id;
+    props.navigation.navigate('DETAILS', {id});
   };
 
   return (
@@ -31,63 +46,66 @@ const Favorites = () => {
                 'https://image.tmdb.org/t/p/w185' + item.poster_path;
 
               return (
-                <View style={{marginVertical: 12}}>
-                  <View style={{flexDirection: 'row', flex: 1}}>
-                    <Image
-                      source={{
-                        uri: IMAGE_URL,
-                      }}
-                      resizeMode="cover"
-                      style={{width: 100, height: 150, borderRadius: 10}}
-                    />
-                    <View style={{flex: 1, marginLeft: 12}}>
-                      <View>
-                        <Text style={{fontSize: 22, paddingRight: 16}}>
-                          {item.title}
-                        </Text>
-                      </View>
-                      <View
-                        style={{
-                          flexDirection: 'row',
-                          marginTop: 10,
-                          alignItems: 'center',
-                        }}>
-                        <MaterialIcons
-                          color="green"
-                          name="thumb-up"
-                          size={32}
-                        />
-                        <Text
+                <TouchableOpacity
+                onPress={() =>goToDetails(item)}>
+                  <View style={{marginVertical: 12}}>
+                    <View style={{flexDirection: 'row', flex: 1}}>
+                      <Image
+                        source={{
+                          uri: IMAGE_URL,
+                        }}
+                        resizeMode="cover"
+                        style={{width: 100, height: 150, borderRadius: 10}}
+                      />
+                      <View style={{flex: 1, marginLeft: 12}}>
+                        <View>
+                          <Text style={{fontSize: 22, paddingRight: 16}}>
+                            {item.title}
+                          </Text>
+                        </View>
+                        <View
                           style={{
-                            fontSize: 18,
-                            paddingLeft: 10,
-                            color: '#64676D',
-                          }}>
-                          {item.vote_count}
-                        </Text>
-                        <TouchableOpacity
-                          onPress={() => handleRemoveFavorite(item)}
-                          activeOpacity={0.7}
-                          style={{
-                            marginLeft: 14,
                             flexDirection: 'row',
-                            padding: 2,
-                            borderRadius: 20,
+                            marginTop: 10,
                             alignItems: 'center',
-                            justifyContent: 'center',
-                            height: 40,
-                            width: 40,
                           }}>
                           <MaterialIcons
-                            color="orange"
+                            color="green"
+                            name="thumb-up"
                             size={32}
-                            name="favorite"
                           />
-                        </TouchableOpacity>
+                          <Text
+                            style={{
+                              fontSize: 18,
+                              paddingLeft: 10,
+                              color: '#64676D',
+                            }}>
+                            {item.vote_count}
+                          </Text>
+                          <TouchableOpacity
+                            onPress={() => handleRemoveFavorite(item)}
+                            activeOpacity={0.7}
+                            style={{
+                              marginLeft: 14,
+                              flexDirection: 'row',
+                              padding: 2,
+                              borderRadius: 20,
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              height: 40,
+                              width: 40,
+                            }}>
+                            <MaterialIcons
+                              color="orange"
+                              size={32}
+                              name="favorite"
+                            />
+                          </TouchableOpacity>
+                        </View>
                       </View>
                     </View>
                   </View>
-                </View>
+                </TouchableOpacity>
               );
             }}
           />

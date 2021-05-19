@@ -55,8 +55,10 @@ const MovieDetailsScreen: React.FC<MovieDetailsScreenProps> = (props) => {
         />
         
         <Text style={styles.overview}>{movie.overview}</Text>
+        <View style={styles.backButton}>
+            <Button onPress={() => props.navigation.goBack()} title="go back" />
+        </View>
         
-        <Button onPress={() => props.navigation.goBack()} title="go back" />
     </View>
   );
 };
