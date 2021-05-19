@@ -4,7 +4,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import {removeFavorite} from '../redux/actions';
-import Movie from './Movie';
+import Movie from './MovieScreen';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigations/data';

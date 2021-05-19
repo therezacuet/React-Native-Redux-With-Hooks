@@ -3,12 +3,17 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 // import screens
-import Movies from '../screens/Movie';
-import Favorites from '../screens/Favorite';
+import Movies from '../screens/MovieScreen';
+import Favorites from '../screens/FavoriteScreen';
 import { createStackNavigator } from '@react-navigation/stack';
 import { View, Text } from 'react-native';
 import { RootStackParamList } from './data';
-import MovieDetailsScreen from '../screens/MovieDetails';
+import MovieDetailsScreen from '../screens/MovieDetailsScreen';
+import SplashScreen from '../screens/SplashScreen';
+import AccountScreen from '../screens/AccountDetailsScreen';
+import NotificationScreen from '../screens/NotificationScreen';
+import AddScreen from '../screens/AddScreen';
+import LoginScreen from '../screens/LoginScreen';
 const Tab = createBottomTabNavigator();
 const tabBarOptions = {
   showLabel: false,
@@ -38,6 +43,33 @@ const RootNavigator = () => {
             ),
           }}
         />
+        <Tab.Screen
+          name="Add"
+          component={AddScreen}
+          options={{
+            tabBarIcon: ({color, size}) => (
+              <MaterialIcons name="add-circle" color={color} size={50} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Notification"
+          component={NotificationScreen}
+          options={{
+            tabBarIcon: ({color, size}) => (
+              <MaterialIcons name="notifications" color={color} size={size} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Account"
+          component={AccountScreen}
+          options={{
+            tabBarIcon: ({color, size}) => (
+              <MaterialIcons name="account-circle" color={color} size={size} />
+            ),
+          }}
+        />
       </Tab.Navigator>
   );
 };
@@ -48,9 +80,11 @@ const Stack = createStackNavigator<RootStackParamList>();
 const StackRouter: React.FC<StackRouterProps> = (props) => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="HOME">
-        <Stack.Screen name="HOME" component={RootNavigator} />
-        <Stack.Screen name="DETAILS" component={MovieDetailsScreen} />
+      <Stack.Navigator initialRouteName="SPLASH">
+        <Stack.Screen options={{headerShown: false}} name="SPLASH" component={SplashScreen} />
+        <Stack.Screen options={{headerShown: false}} name="HOME" component={RootNavigator} />
+        <Stack.Screen options={{headerShown: false}} name="LOGIN" component={LoginScreen} />
+        <Stack.Screen name="DETAILS" options={{headerShown: true}} component={MovieDetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
