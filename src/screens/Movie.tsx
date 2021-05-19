@@ -2,10 +2,19 @@ import React, {useEffect} from 'react';
 import {View, Text, FlatList, Image, TouchableOpacity} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {RouteProp} from '@react-navigation/native';
 
 import {getMovies, addFavorite, removeFavorite} from '../redux/actions';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../navigations/data';
+import { Movie } from '../models/movie';
 
-const Movies = () => {
+interface MoviescreenProps {
+  navigation: StackNavigationProp<RootStackParamList>;
+  route: RouteProp<RootStackParamList, 'HOME'>;
+}
+
+const Movies : React.FC<MoviescreenProps> = (props) => {
   const {movies, favorites} = useSelector(state => state.moviesReducer);
   const dispatch = useDispatch();
   const fetchMovies = () => dispatch(getMovies());
@@ -32,6 +41,12 @@ const Movies = () => {
     return false;
   };
 
+  const goToDetails = (movie: Movie) => {
+    console.log(JSON.stringify(props));
+    const id = movie.id;
+    props.navigation.navigate('DETAILS', {id});
+  };
+
   return (
     <View style={{flex: 1, marginTop: 44, paddingHorizontal: 20}}>
       <Text style={{fontSize: 22}}>Popular Movies</Text>
@@ -40,10 +55,11 @@ const Movies = () => {
           data={movies}
           keyExtractor={item => item.id.toString()}
           renderItem={({item}) => {
-            const IMAGE_URL =
-              'https://image.tmdb.org/t/p/w185' + item.poster_path;
+            const IMAGE_URL = 'https://image.tmdb.org/t/p/w185' + item.poster_path;
             return (
-              <View style={{marginVertical: 12}}>
+              <TouchableOpacity
+                onPress={() =>goToDetails(item)}>
+                <View style={{marginVertical: 12}}>
                 <View style={{flexDirection: 'row', flex: 1}}>
                   <Image
                     source={{
@@ -100,6 +116,7 @@ const Movies = () => {
                   </View>
                 </View>
               </View>
+              </TouchableOpacity>
             );
           }}
           showsVerticalScrollIndicator={false}

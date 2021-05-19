@@ -10,6 +10,7 @@
 
  import React from 'react';
 import { Provider } from 'react-redux';
+import StackRouter from './src/navigations/RootNavigator';
 import RootNavigator from './src/navigations/RootNavigator';
 import { store } from './src/redux/store';
 
@@ -17,7 +18,7 @@ import { store } from './src/redux/store';
   
    return (
     <Provider store={store}>
-      <RootNavigator />
+       <StackRouter />
     </Provider>
    );
  };

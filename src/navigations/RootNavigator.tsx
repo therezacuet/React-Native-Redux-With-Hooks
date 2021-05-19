@@ -5,6 +5,10 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 // import screens
 import Movies from '../screens/Movie';
 import Favorites from '../screens/Favorite';
+import { createStackNavigator } from '@react-navigation/stack';
+import { View, Text } from 'react-native';
+import { RootStackParamList } from './data';
+import MovieDetailsScreen from '../screens/MovieDetails';
 const Tab = createBottomTabNavigator();
 const tabBarOptions = {
   showLabel: false,
@@ -15,7 +19,6 @@ const tabBarOptions = {
 };
 const RootNavigator = () => {
   return (
-    <NavigationContainer>
       <Tab.Navigator tabBarOptions={tabBarOptions}>
         <Tab.Screen
           name="Movies"
@@ -36,7 +39,21 @@ const RootNavigator = () => {
           }}
         />
       </Tab.Navigator>
+  );
+};
+
+interface StackRouterProps {}
+
+const Stack = createStackNavigator<RootStackParamList>();
+const StackRouter: React.FC<StackRouterProps> = (props) => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="HOME">
+        <Stack.Screen name="HOME" component={RootNavigator} />
+        <Stack.Screen name="DETAILS" component={MovieDetailsScreen} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };
-export default RootNavigator;
+
+export default StackRouter;
