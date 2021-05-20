@@ -47,7 +47,7 @@ export const getMovieDetails = (movieId:any)=>{
           payload: res.data,
         });
 
-        console.log(res.data);
+        //console.log(res.data);
 
       } else {
         console.log('Unable to fetch');

@@ -1,4 +1,4 @@
-export type DetailsScreenParams = {
+  export type DetailsScreenParams = {
     id: number;
   };
 
@@ -6,7 +6,7 @@ export type DetailsScreenParams = {
     HOME: undefined;
     DETAILS: DetailsScreenParams;
     SPLASH: undefined;
-    NOTIFICATION: undefined;
+    SETTINGS: undefined;
     ACCOUNT: undefined;
     ADD: undefined;
     LOGIN: undefined;

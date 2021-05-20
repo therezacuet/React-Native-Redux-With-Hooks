@@ -11,12 +11,12 @@ import styles from '../styles/MovieDetailsStyle';
 
 
 
-interface NotificationScreenProps {
-  navigation: StackNavigationProp<RootStackParamList, 'NOTIFICATION'>;
-  route: RouteProp<RootStackParamList, 'NOTIFICATION'>;
+interface SettingsScreenProps {
+  navigation: StackNavigationProp<RootStackParamList, 'SETTINGS'>;
+  route: RouteProp<RootStackParamList, 'SETTINGS'>;
 }
 
-const NotificationScreen: React.FC<NotificationScreenProps> = (props) => {
+const SettingsScreen: React.FC<SettingsScreenProps> = (props) => {
 
   React.useEffect(() => {
     return () => {
@@ -27,9 +27,9 @@ const NotificationScreen: React.FC<NotificationScreenProps> = (props) => {
   return (
     
     <View style={styles.container}>
-        <Text>Acount Details</Text>
+        <Text>Settings</Text>
     </View>
   );
 };
 
-export default NotificationScreen;
+export default SettingsScreen;

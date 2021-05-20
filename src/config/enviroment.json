@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "EnvironmentConfig": {
+            "baseApiUrl": "http://localhost:8080",
+            "environment": "dev"
+        }
+    },
+    "stage": {
+        "EnvironmentConfig": {
+            "baseApiUrl": "https://stage.marginedge.com/master",
+            "environment": "stage"
+        }
+    },
+    "prod": {
+        "EnvironmentConfig": {
+            "baseApiUrl": "https://app.marginedge.com",
+            "environment": "production"
+        }
+    }
+}

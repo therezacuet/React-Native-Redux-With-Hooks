@@ -11,9 +11,9 @@ import { RootStackParamList } from './data';
 import MovieDetailsScreen from '../screens/MovieDetailsScreen';
 import SplashScreen from '../screens/SplashScreen';
 import AccountScreen from '../screens/AccountDetailsScreen';
-import NotificationScreen from '../screens/NotificationScreen';
 import AddScreen from '../screens/AddScreen';
 import LoginScreen from '../screens/LoginScreen';
+import SettingsScreen from '../screens/SettingsScreen';
 const Tab = createBottomTabNavigator();
 const tabBarOptions = {
   showLabel: false,
@@ -22,7 +22,7 @@ const tabBarOptions = {
     height: '10%',
   },
 };
-const RootNavigator = () => {
+const BottomTab = () => {
   return (
       <Tab.Navigator tabBarOptions={tabBarOptions}>
         <Tab.Screen
@@ -41,6 +41,7 @@ const RootNavigator = () => {
             tabBarIcon: ({color, size}) => (
               <MaterialIcons name="favorite" color={color} size={size} />
             ),
+          
           }}
         />
         <Tab.Screen
@@ -53,20 +54,20 @@ const RootNavigator = () => {
           }}
         />
         <Tab.Screen
-          name="Notification"
-          component={NotificationScreen}
+          name="Account"
+          component={LoginScreen}
           options={{
             tabBarIcon: ({color, size}) => (
-              <MaterialIcons name="notifications" color={color} size={size} />
+              <MaterialIcons name="account-circle" color={color} size={size} />
             ),
           }}
         />
         <Tab.Screen
-          name="Account"
-          component={AccountScreen}
+          name="Settings"
+          component={SettingsScreen}
           options={{
             tabBarIcon: ({color, size}) => (
-              <MaterialIcons name="account-circle" color={color} size={size} />
+              <MaterialIcons name="settings" color={color} size={size} />
             ),
           }}
         />
@@ -82,7 +83,7 @@ const StackRouter: React.FC<StackRouterProps> = (props) => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="SPLASH">
         <Stack.Screen options={{headerShown: false}} name="SPLASH" component={SplashScreen} />
-        <Stack.Screen options={{headerShown: false}} name="HOME" component={RootNavigator} />
+        <Stack.Screen options={{headerShown: false}} name="HOME" component={BottomTab} />
         <Stack.Screen options={{headerShown: false}} name="LOGIN" component={LoginScreen} />
         <Stack.Screen name="DETAILS" options={{headerShown: true}} component={MovieDetailsScreen} />
       </Stack.Navigator>
