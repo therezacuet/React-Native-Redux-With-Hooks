@@ -1,19 +1,19 @@
 {
     "dev": {
         "EnvironmentConfig": {
-            "baseApiUrl": "http://localhost:8080",
+            "baseApiUrl": "https://api.themoviedb.org/3/movie/",
             "environment": "dev"
         }
     },
     "stage": {
         "EnvironmentConfig": {
-            "baseApiUrl": "https://stage.marginedge.com/master",
+            "baseApiUrl": "https://api.themoviedb.org/3/movie/",
             "environment": "stage"
         }
     },
     "prod": {
         "EnvironmentConfig": {
-            "baseApiUrl": "https://app.marginedge.com",
+            "baseApiUrl": "https://api.themoviedb.org/3/movie/",
             "environment": "production"
         }
     }

@@ -8,6 +8,7 @@ import {getMovies, addFavorite, removeFavorite} from '../redux/actions';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigations/data';
 import { Movie } from '../models/movie';
+import { RootState } from '../redux/store';
 
 interface MoviescreenProps {
   navigation: StackNavigationProp<RootStackParamList>;
@@ -15,7 +16,7 @@ interface MoviescreenProps {
 }
 
 const Movies : React.FC<MoviescreenProps> = (props) => {
-  const {movies, favorites} = useSelector(state => state.moviesReducer);
+  const {movies, favorites} = useSelector((state: RootState) => state.moviesReducer);
   const dispatch = useDispatch();
   const fetchMovies = () => dispatch(getMovies());
   const addToFavorites = (movie: any) => dispatch(addFavorite(movie));

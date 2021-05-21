@@ -1,10 +1,6 @@
 import axios from 'axios';
+import { GET_MOVIES, MOVIE_DETAILS, ADD_FAVORITE_ITEM, REMOVE_FAVORITE_ITEM } from './types';
 
-// Define action types
-export const GET_MOVIES = 'FETCH_MOVIES';
-export const MOVIE_DETAILS = 'MOVIE_DETAILS';
-export const ADD_FAVORITE_ITEM = 'ADD_FAVORITE_ITEM';
-export const REMOVE_FAVORITE_ITEM = 'REMOVE_FAVORITE_ITEM';
 
 // Construct a BASE URL for API endpoint
 const API_URL = 'https://api.themoviedb.org/3/movie/';
