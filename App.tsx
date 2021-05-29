@@ -8,7 +8,7 @@
  * @format
  */
 
- import React from 'react';
+import React from 'react';
 import { Provider } from 'react-redux';
 import StackRouter from './src/navigations/RootNavigator';
 import RootNavigator from './src/navigations/RootNavigator';
