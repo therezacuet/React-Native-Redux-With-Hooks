@@ -14,13 +14,12 @@ import StackRouter from './src/navigations/RootNavigator';
 import RootNavigator from './src/navigations/RootNavigator';
 import { store } from './src/redux/store';
 
- const App = () => {
-  
+const App = () => {
    return (
     <Provider store={store}>
        <StackRouter />
     </Provider>
    );
- };
+};
 
- export default App;
+export default App;
