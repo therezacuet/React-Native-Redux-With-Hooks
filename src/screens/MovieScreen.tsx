@@ -10,6 +10,8 @@ import { RootStackParamList } from '../navigations/data';
 import { Movie } from '../models/movie';
 import { RootState } from '../redux/store';
 
+
+
 interface MoviescreenProps {
   navigation: StackNavigationProp<RootStackParamList>;
   route: RouteProp<RootStackParamList, 'HOME'>;
